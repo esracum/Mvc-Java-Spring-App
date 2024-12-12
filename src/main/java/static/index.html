@@ -87,7 +87,7 @@
         async function fetchEmployees() {
             try {
                 const response = await fetch(API_URL);
-                if (!response.ok) throw new Error('The employee has been successfully added..');
+                if (!response.ok) throw new Error('Failed to added..');
                 const employees = await response.json();
                 const table = document.getElementById('employeeTable');
                 table.innerHTML = '';
@@ -129,9 +129,10 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(employee),
                 });
-                if (!response.ok) throw new Error('The employee has been successfully added.');
+                if (!response.ok) throw new Error('Failed to added.');
                 clearForm();
                 fetchEmployees();
+                showSuccessMessage('The employee has been successfully added.');
             } catch (error) {
                 alert('' + error.message);
             }
